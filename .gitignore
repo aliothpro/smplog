@@ -1,0 +1,58 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+#*.so
+#*.dylib
+#*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+# *.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.zip
+*.7z
+
+
+3rd
+3rd/
+
+#vs project  or build
+build/
+build/*
+vsproject/
+vsproject/*
+lxbuild/
+lxbuild/*
+vsbuild/
+vsbuild/*
+build/
+obuild/*
+.cache/*
+.vscode/*
+.idea/*
+# flatbuffers & protobuf
+include/3rd/json/payload_generated.h
+include/3rd/json/payload.fbs
+include/3rd/json/sim_payload.proto
+.vscode/settings.jso
