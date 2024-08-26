@@ -1,5 +1,6 @@
 #include "logging/ilog.h"
 #include "logging/log_mgr.h"
+#include <atomic>
 #include <string.h>
 #include <thread>
 #include "common/util.h"
@@ -36,6 +37,7 @@ void DoLogging() {
 	for (size_t i = 8;i<sizeof(data);++i) {
 		data[i] = i % 0xff;
 	}
+	static std::atomic_int32_t counter = 0;
 	char bufferCtx[4] = {0};
 	std::string logMsg;
 	for (int j = 0; j < 808; j++) {
@@ -50,6 +52,8 @@ void DoLogging() {
 		xdata.id = i;
 		std::string xx((char*)&xdata, sizeof(xdata));
 		logger->log_binary(log_level::Debug, xx);
+		logger->log(log_level::Debug, "log debug counter:(",counter.load(),")");
+		counter++;
 	}		
 }
 
@@ -70,7 +74,8 @@ int main()
 	//printf("Main thread id = [%d]\n", tid);
 	log_mgr::get_instance().start();
 	printf("LogExample start.\n");
-	logger = log_mgr::get_instance().get_logger("LogExample", ".", log_format::Sqlite);
+	logger = log_mgr::get_instance().get_logger("LogExample", "./log", log_format::File);
+	// logger->set_path("./log/");
 	logger->set_level(log_level::Debug);
 	logger->set_expired(1);
 
